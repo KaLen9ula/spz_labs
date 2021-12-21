@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Dentry - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Dentry.html">Dentry</a></li><li><a href="module-Device.html">Device</a><ul class='methods'><li data-type='method'><a href="module-Device.html#readBlock#readBlock">readBlock</a></li><li data-type='method'><a href="module-Device.html#writeBlock#writeBlock">writeBlock</a></li></ul></li><li><a href="module-Driver.html">Driver</a><ul class='methods'><li data-type='method'><a href="module-Driver.html#_addLink#_addLink">_addLink</a></li><li data-type='method'><a href="module-Driver.html#_appendBlockToINode#_appendBlockToINode">_appendBlockToINode</a></li><li data-type='method'><a href="module-Driver.html#_descreaseINode#_descreaseINode">_descreaseINode</a></li><li data-type='method'><a href="module-Driver.html#_getBlocks#_getBlocks">_getBlocks</a></li><li data-type='method'><a href="module-Driver.html#_getDirPath#_getDirPath">_getDirPath</a></li><li data-type='method'><a href="module-Driver.html#_getFileName#_getFileName">_getFileName</a></li><li data-type='method'><a href="module-Driver.html#_getUnusedDescriptor#_getUnusedDescriptor">_getUnusedDescriptor</a></li><li data-type='method'><a href="module-Driver.html#_increaseINode#_increaseINode">_increaseINode</a></li><li data-type='method'><a href="module-Driver.html#_read#_read">_read</a></li><li data-type='method'><a href="module-Driver.html#_readDirectory#_readDirectory">_readDirectory</a></li><li data-type='method'><a href="module-Driver.html#_removeLastBlocksFromINode#_removeLastBlocksFromINode">_removeLastBlocksFromINode</a></li><li data-type='method'><a href="module-Driver.html#_removeOrUpdate#_removeOrUpdate">_removeOrUpdate</a></li><li data-type='method'><a href="module-Driver.html#_setDescriptorBlock#_setDescriptorBlock">_setDescriptorBlock</a></li><li data-type='method'><a href="module-Driver.html#_setN#_setN">_setN</a></li><li data-type='method'><a href="module-Driver.html#_truncate#_truncate">_truncate</a></li><li data-type='method'><a href="module-Driver.html#_unlink#_unlink">_unlink</a></li><li data-type='method'><a href="module-Driver.html#_updateDescriptor#_updateDescriptor">_updateDescriptor</a></li><li data-type='method'><a href="module-Driver.html#_write#_write">_write</a></li><li data-type='method'><a href="module-Driver.html#close#close">close</a></li><li data-type='method'><a href="module-Driver.html#create#create">create</a></li><li data-type='method'><a href="module-Driver.html#getDescriptor#getDescriptor">getDescriptor</a></li><li data-type='method'><a href="module-Driver.html#link#link">link</a></li><li data-type='method'><a href="module-Driver.html#lookUp#lookUp">lookUp</a></li><li data-type='method'><a href="module-Driver.html#mkdir#mkdir">mkdir</a></li><li data-type='method'><a href="module-Driver.html#mkfs#mkfs">mkfs</a></li><li data-type='method'><a href="module-Driver.html#open#open">open</a></li><li data-type='method'><a href="module-Driver.html#read#read">read</a></li><li data-type='method'><a href="module-Driver.html#readDirectory#readDirectory">readDirectory</a></li><li data-type='method'><a href="module-Driver.html#rmdir#rmdir">rmdir</a></li><li data-type='method'><a href="module-Driver.html#symlink#symlink">symlink</a></li><li data-type='method'><a href="module-Driver.html#truncate#truncate">truncate</a></li><li data-type='method'><a href="module-Driver.html#unlink#unlink">unlink</a></li><li data-type='method'><a href="module-Driver.html#write#write">write</a></li></ul></li><li><a href="module-FileType.html">FileType</a></li><li><a href="module-INode.html">INode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#deserializeAddress">deserializeAddress</a></li><li><a href="global.html#deserializeAddresses">deserializeAddresses</a></li><li><a href="global.html#deserializeDentries">deserializeDentries</a></li><li><a href="global.html#deserializeDentry">deserializeDentry</a></li><li><a href="global.html#deserializeFileType">deserializeFileType</a></li><li><a href="global.html#deserializeInode">deserializeInode</a></li><li><a href="global.html#deserializeInt16">deserializeInt16</a></li><li><a href="global.html#deserializeInt32">deserializeInt32</a></li><li><a href="global.html#serializeAddress">serializeAddress</a></li><li><a href="global.html#serializeAddresses">serializeAddresses</a></li><li><a href="global.html#serializeDentries">serializeDentries</a></li><li><a href="global.html#serializeDentry">serializeDentry</a></li><li><a href="global.html#serializeFileType">serializeFileType</a></li><li><a href="global.html#serializeInode">serializeInode</a></li><li><a href="global.html#serializeInt16">serializeInt16</a></li><li><a href="global.html#serializeInt32">serializeInt32</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Dentry</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+                <div class="class-description"><p>Directory entry
+link file name and inode</p></div>
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description usertext"><p>Directory entry</p></div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Directory entry</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dentry.js.html">dentry.js</a>, <a href="dentry.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fileName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>File name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>ino</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">int</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Unique inode number</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Tue Dec 21 2021 14:39:25 GMT+0200 (Восточная Европа, стандартное время) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
