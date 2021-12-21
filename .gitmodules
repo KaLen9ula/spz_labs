@@ -1,0 +1,3 @@
+[submodule "assets/template/docdash"]
+	path = assets/template/docdash
+	url = https://github.com/clenemt/docdash.git

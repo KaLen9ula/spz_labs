@@ -1,0 +1,23 @@
+{
+  "name": "super_driver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "git-submodules": "git submodule update --init --recursive",
+    "start": "node index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "generate-docs": "node_modules/.bin/jsdoc -c jsdoc.json"
+  },
+  "author": "andrukhovych M. A.",
+  "license": "ISC",
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "jest": "^27.4.4",
+    "jsdoc": "^3.6.7"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}
