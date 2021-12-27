@@ -53,6 +53,7 @@ class Driver {
   constructor(device) {
     this.device = device;
     this.openFiles = {};
+    this.cwdIno = 0;
   }
 
   /**
@@ -224,7 +225,7 @@ class Driver {
       symlinkDepth = { depth: 0 };
     }
     if (baseDirectory === null) {
-      baseDirectory = this.getDescriptor(0);
+      baseDirectory = this.getDescriptor(this.cwdIno);
     }
 
     if (filePath == "/") return this.getDescriptor(0);
@@ -430,26 +431,75 @@ class Driver {
    * @param {string} linkPath Symlick path
    */
   symlink(filePath, linkPath) {
-    const linkPathBytes = new TextEncoder().encode(linkPath);
-    const fileName = this._getFileName(filePath);
-    const dirPath = this._getDirPath(filePath);
+    let symlink;
 
+    try {
+      const linkPathBytes = new TextEncoder().encode(linkPath);
+      const fileName = this._getFileName(filePath);
+      const dirPath = this._getDirPath(filePath);
+
+      const dir = this.lookUp(dirPath);
+      if (dir.type != FileType.DIRECTORY) {
+        throw new InvalidPath("Directory not found");
+      }
+
+      symlink = this._getUnusedDescriptor();
+      symlink.type = FileType.SYMLINK;
+      symlink.refs = 0;
+      symlink.size = 0;
+      symlink.singleIndirect = 0;
+      symlink.straightLinks = [];
+      this._updateDescriptor(symlink);
+      this._addLink(dir, symlink, fileName);
+      this._truncate(symlink, linkPath.length);
+      symlink = this.getDescriptor(symlink.ino);
+      this._write(symlink, 0, linkPathBytes);
+    } catch (e) {
+      if (e instanceof FileAlreadyExist) {
+        this._removeOrUpdate(symlink);
+      }
+
+      throw e;
+    }
+  }
+
+  /**
+   *
+   * @param {string} dirPath
+   */
+  cd(dirPath) {
     const dir = this.lookUp(dirPath);
-    if (dir.type != FileType.DIRECTORY) {
-      throw new InvalidPath("Directory not found");
+    this.cwdIno = dir.ino;
+  }
+
+  /**
+   * @return {string} Process work directory
+   */
+  pwd() {
+    if (this.cwdIno == 0) {
+      return "/";
     }
 
-    let symlink = this._getUnusedDescriptor();
-    symlink.type = FileType.SYMLINK;
-    symlink.refs = 0;
-    symlink.size = 0;
-    symlink.singleIndirect = 0;
-    symlink.straightLinks = [];
-    this._updateDescriptor(symlink);
-    this._addLink(dir, symlink, fileName);
-    this._truncate(symlink, linkPath.length);
-    symlink = this.getDescriptor(symlink.ino);
-    this._write(symlink, 0, linkPathBytes);
+    let dir = this.getDescriptor(this.cwdIno);
+    let dentries = this._readDirectory(dir);
+    let path = "";
+    while (
+      dentries.find((d) => d.fileName == ".").ino !=
+      dentries.find((d) => d.fileName == "..").ino
+    ) {
+      console.log(dentries);
+      const parentDirIno = dentries.find((d) => d.fileName == "..").ino;
+      const parentDir = this.getDescriptor(parentDirIno);
+      const parentDentries = this._readDirectory(parentDir);
+      const currentDirName = parentDentries.find(
+        (d) => d.ino == dir.ino
+      ).fileName;
+      path = "/" + currentDirName + path;
+      dir = parentDir;
+      dentries = this._readDirectory(dir);
+    }
+
+    return path;
   }
 
   /**
